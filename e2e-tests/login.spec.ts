@@ -1,22 +1,27 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/login-page';
+import HomePage from '../pages/home-page';
 
 test.describe('User login', async () => {
   test('login success', async ({ page }) => {
     const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+    
     await loginPage.goToLoginPage();
-    await loginPage.displayLoginPage();
+    await loginPage.expectDisplayLoginPage();
     await loginPage.loginWithUsernamePassword();
-    await loginPage.displayPageTitle();
-    await loginPage.displayLogoutButton();
+    await homePage.expectDisplayHomePage();
+    await homePage.expectDisplayLogoutButton();
   });
 
   test('login failed', async ({ page }) => {
     const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+
     await loginPage.goToLoginPage();
-    await loginPage.displayLoginPage();
+    await loginPage.expectDisplayLoginPage();
     await loginPage.loginWithUsernameWithoutPassword();
-    await loginPage.displayPasswordRequiredMessage();
+    await homePage.expectDisplayLogoutButton();
   });
 
 });
