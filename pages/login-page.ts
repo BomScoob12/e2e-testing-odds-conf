@@ -36,6 +36,12 @@ class LoginPage {
     await this.logoutButton.click();
   }
 
+  async loginWithUsernamePassword() {
+    await this.fillUsername('BomScoob');
+    await this.fillPassword('password');
+    await this.clickLoginButton();
+  }
+
   async displayLoginPage() {
     await expect(this.page.getByTestId('login-title')).toContainText(
       'Welcome To ODDS| Conference'

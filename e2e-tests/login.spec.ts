@@ -6,9 +6,7 @@ test.describe('User login', async () => {
     const loginPage = new LoginPage(page);
     await loginPage.goToLoginPage();
     await loginPage.displayLoginPage();
-    await loginPage.fillUsername('BomScoob');
-    await loginPage.fillPassword('password');
-    await loginPage.clickLoginButton();
+    await loginPage.loginWithUsernamePassword();
     await loginPage.displayPageTitle();
   });
 
