@@ -6,7 +6,7 @@ test.describe('User login', async () => {
   test('login success', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
-    
+
     await loginPage.goToLoginPage();
     await loginPage.expectDisplayLoginPage();
     await loginPage.loginWithUsernamePassword();
@@ -16,12 +16,11 @@ test.describe('User login', async () => {
 
   test('login failed', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const homePage = new HomePage(page);
 
     await loginPage.goToLoginPage();
     await loginPage.expectDisplayLoginPage();
     await loginPage.loginWithUsernameWithoutPassword();
-    await homePage.expectDisplayLogoutButton();
+    await loginPage.expectDisplayPasswordRequiredMessage();
   });
 
 });
