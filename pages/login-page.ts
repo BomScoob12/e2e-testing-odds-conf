@@ -33,6 +33,10 @@ class LoginPage {
       'Welcome To ODDS| Conference'
     );
   }
+
+  async displayPageTitle() {
+    await expect(this.page.getByText('Welcome To ODDS| Conference Playwright Workshop')).toBeVisible();
+  }
 }
 
 export default LoginPage;
