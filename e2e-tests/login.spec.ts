@@ -10,6 +10,7 @@ test.describe('User login', async () => {
     await loginPage.goToLoginPage();
     await loginPage.expectDisplayLoginPage();
     await loginPage.loginWithUsernamePassword();
+    
     await homePage.expectDisplayHomePage();
     await homePage.expectDisplayLogoutButton();
   });
