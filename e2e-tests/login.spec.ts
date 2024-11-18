@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('login test', async ({ page }) => {
+test('login passed test', async ({ page }) => {
   await page.goto('https://workshop-playwright.vercel.app/');
   await page.getByTestId('username-input').fill('BomScoob');
   await page.getByTestId('password-input').fill('password');
