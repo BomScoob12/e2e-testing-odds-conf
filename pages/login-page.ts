@@ -31,13 +31,13 @@ class LoginPage {
   }
 
   async loginWithUsernamePassword() {
-    await this.fillUsername('BomScoob');
-    await this.fillPassword('password');
+    await this.fillUsername('playwright');
+    await this.fillPassword('pwd1234');
     await this.clickLoginButton();
   }
 
   async loginWithUsernameWithoutPassword() {
-    await this.fillUsername('BomScoob');
+    await this.fillUsername('playwright');
     await this.clickLoginButton();
   }
 
