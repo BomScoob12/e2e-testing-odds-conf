@@ -42,6 +42,11 @@ class LoginPage {
     await this.clickLoginButton();
   }
 
+  async loginWithUsernameWithoutPassword() {
+    await this.fillUsername('BomScoob');
+    await this.clickLoginButton();
+  }
+
   async displayLoginPage() {
     await expect(this.page.getByTestId('login-title')).toContainText(
       'Welcome To ODDS| Conference'
@@ -53,6 +58,15 @@ class LoginPage {
       this.page.getByText('Welcome To ODDS| Conference Playwright Workshop')
     ).toBeVisible();
   }
+
+  async displayLogoutButton() {
+    await expect(this.logoutButton).toBeVisible();
+  }
+
+  async displayPasswordRequiredMessage() {
+    await expect(this.page.getByText('Password is required')).toBeVisible();
+  }
+  
 }
 
 export default LoginPage;

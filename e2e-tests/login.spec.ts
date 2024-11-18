@@ -8,6 +8,15 @@ test.describe('User login', async () => {
     await loginPage.displayLoginPage();
     await loginPage.loginWithUsernamePassword();
     await loginPage.displayPageTitle();
+    await loginPage.displayLogoutButton();
+  });
+
+  test('login failed', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goToLoginPage();
+    await loginPage.displayLoginPage();
+    await loginPage.loginWithUsernameWithoutPassword();
+    await loginPage.displayPasswordRequiredMessage();
   });
 
 });
