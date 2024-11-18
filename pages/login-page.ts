@@ -1,11 +1,19 @@
-import { Page, test, expect } from '@playwright/test';
+import { Page, test, expect, Locator } from '@playwright/test';
 
 class LoginPage {
   readonly page: Page;
+  readonly usernameInput: Locator;
+  readonly passwordInput: Locator;
+  readonly loginButton: Locator;
+  readonly logoutButton: Locator;
   readonly URL = 'https://workshop-playwright.vercel.app/';
 
   constructor(page: Page) {
     this.page = page;
+    this.usernameInput = this.page.getByTestId('username-input');
+    this.passwordInput = this.page.getByTestId('password-input');
+    this.loginButton = this.page.getByRole('button', { name: 'Login' });
+    this.logoutButton = this.page.getByRole('button', { name: 'Log out' });
   }
 
   async goToLoginPage() {
@@ -13,19 +21,19 @@ class LoginPage {
   }
 
   async fillUsername(username: string) {
-    await this.page.getByTestId('username-input').fill(username);
+    await this.usernameInput.fill(username);
   }
 
   async fillPassword(password: string) {
-    await this.page.getByTestId('password-input').fill(password);
+    await this.passwordInput.fill(password);
   }
 
   async clickLoginButton() {
-    await this.page.getByRole('button', { name: 'Login' }).click();
+    await this.loginButton.click();
   }
 
   async clickLogoutButton() {
-    await this.page.getByRole('button', { name: 'Log out' }).click();
+    await this.logoutButton.click();
   }
 
   async displayLoginPage() {
@@ -35,7 +43,9 @@ class LoginPage {
   }
 
   async displayPageTitle() {
-    await expect(this.page.getByText('Welcome To ODDS| Conference Playwright Workshop')).toBeVisible();
+    await expect(
+      this.page.getByText('Welcome To ODDS| Conference Playwright Workshop')
+    ).toBeVisible();
   }
 }
 
